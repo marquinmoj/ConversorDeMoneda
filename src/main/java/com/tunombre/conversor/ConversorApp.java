@@ -1,26 +1,23 @@
 package com.tunombre.conversor;
 
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.IOException;  // Importa la clase IOException
 
 public class ConversorApp {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Conversor conversor = new Conversor();
-
-        System.out.print("Ingrese la moneda base (por ejemplo, USD): ");
-        String base = scanner.nextLine().toUpperCase();
-
-        System.out.print("Ingrese la moneda destino (por ejemplo, EUR): ");
-        String destino = scanner.nextLine().toUpperCase();
+        // Definir las monedas base y destino
+        String monedaBase = "USD";  // Puedes cambiar estas monedas
+        String monedaDestino = "EUR";  // Según tus necesidades
 
         try {
-            double tasa = conversor.obtenerTasaCambio(base, destino);
-            System.out.println("Tasa de cambio de " + base + " a " + destino + ": " + tasa);
+            // Llamar al método que obtiene la tasa de cambio
+            double tasaCambio = Conversor.obtenerTasaCambio(monedaBase, monedaDestino);
+            
+            // Mostrar el resultado
+            System.out.println("La tasa de cambio de " + monedaBase + " a " + monedaDestino + " es: " + tasaCambio);
         } catch (IOException | InterruptedException e) {
+            // Si ocurre una excepción, la capturamos y mostramos el mensaje de error
             System.out.println("Error al obtener la tasa de cambio: " + e.getMessage());
+            e.printStackTrace();  // Mostrar el detalle del error para depuración
         }
-
-        scanner.close();
     }
 }
